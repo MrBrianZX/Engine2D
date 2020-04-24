@@ -14,45 +14,56 @@ public class Canvas extends JPanel{
 
     private int delay;
     private final Timer miTimer;
-    private  Objeto2D prueba = new Objeto2D("/testworm.png");
     private int fps = 60;
 
-    public Canvas()
+    private Mundo primernivel;
+
+    private SistemaMovimiento movimiento = SistemaMovimiento.getInstancia();
+    private  SistemaControl controles;
+
+    public Canvas(SistemaControl evento)
     {
         super();
         this.delay = 1000/fps;
         miTimer = new Timer(this.delay,gameTimer);
         miTimer.start();
+        controles = evento;
 
-        prueba.aceleracion = 2;
     }
 
     public void UpdateFrames(){
         this.repaint();
-        System.out.println("Repintando los frames");
+        //System.out.println("Repintando los frames");
     }
 
-    public ActionListener gameTimer = new ActionListener() {
-        public void actionPerformed(ActionEvent actionEvent) {
-            UpdateFrames();
-        }
-    };
+    public ActionListener gameTimer = actionEvent -> UpdateFrames();
 
-    private void DibujarImagenes(BufferedImage imagen, Vector2D coordenadas, Graphics2D g){
+    private void DibujarImagenes(Objeto entidad, Graphics2D g){
+        Objeto2D miEntidad = (Objeto2D) entidad;
         AffineTransform tx = AffineTransform.getScaleInstance(1,1);
-        BufferedImageOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
-        BufferedImage template = op.filter(imagen,null);
 
-        g.drawImage(imagen,op,(int)coordenadas.x,(int)coordenadas.y);
+        BufferedImageOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
+        BufferedImage template = op.filter(miEntidad.getSuperficie().getImagen(),null);
+
+        g.drawImage(template,op,(int)miEntidad.getPosicion().x,(int)miEntidad.getPosicion().y);
     }
 
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
-        Vector2D AceleracionX= new Vector2D(prueba.aceleracion,0);
-        if(prueba.getDisplayImage()!=null){
-            DibujarImagenes(prueba.getDisplayImage().GetImagen(), prueba.coordenadas,(Graphics2D)g);
-            prueba.coordenadas = prueba.coordenadas.Suma(AceleracionX);
+        primernivel.update();
+        for(Objeto objs: primernivel.ObjetosMundo){
+            movimiento.Update(objs);
+            objs.MostrarColision((Graphics2D) g);
+            DibujarImagenes(objs, (Graphics2D) g);
         }
     }
+
+    public void init(){
+        movimiento.SetCanvasLimit(this.getWidth(),this.getHeight());
+        primernivel = new Mundo();
+        primernivel.init(controles, this.getWidth(), this.getHeight());
+    }
+
 }
+//Esta bien dude

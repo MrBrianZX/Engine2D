@@ -9,6 +9,10 @@ public class Vector2D {
         this.y = y;
     }
 
+    public Vector2D(double valor){
+        this.x = valor;
+        this.y = valor;
+    }
     public Vector2D(Vector2D copiar){
         this.x = copiar.x;
         this.y = copiar.y;

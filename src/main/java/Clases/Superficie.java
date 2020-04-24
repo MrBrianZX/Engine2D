@@ -20,7 +20,7 @@ public class Superficie {
         }
     }
 
-    public void CargarImagen(String archivo){
+    public void cargarImagen(String archivo){
         try{
             this.imagen = ImageIO.read(getClass().getResource(archivo));
         }catch (IOException e){
@@ -28,7 +28,11 @@ public class Superficie {
         }
     }
 
-    public BufferedImage GetImagen(){
+    public void setImagen(BufferedImage imagen) {
+        this.imagen = imagen;
+    }
+
+    public BufferedImage getImagen(){
         return this.imagen;
     }
 }
