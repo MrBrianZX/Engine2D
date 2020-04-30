@@ -2,7 +2,6 @@ package Clases;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
@@ -15,11 +14,11 @@ public class Canvas extends JPanel{
     private int delay;
     private final Timer miTimer;
     private int fps = 60;
+    public JLabel vidaLabel = new JLabel("Vida:");
 
     private Mundo primernivel;
-
     private SistemaMovimiento movimiento = SistemaMovimiento.getInstancia();
-    private  SistemaControl controles;
+    private SistemaControl controles;
 
     public Canvas(SistemaControl evento)
     {
@@ -56,6 +55,7 @@ public class Canvas extends JPanel{
             movimiento.Update(objs);
             objs.MostrarColision((Graphics2D) g);
             DibujarImagenes(objs, (Graphics2D) g);
+            vidaLabel.setText("Vida:"+getMundo().getPersonaje().getHPactual());
         }
     }
 
@@ -65,5 +65,8 @@ public class Canvas extends JPanel{
         primernivel.init(controles, this.getWidth(), this.getHeight());
     }
 
+    public Mundo getMundo() {
+        return primernivel;
+    }
 }
 //Esta bien dude
