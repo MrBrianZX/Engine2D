@@ -107,7 +107,7 @@ public class Mundo {
         return fin;
     }
 
-    public Jugador getPersonaje() {
+    public Jugador getPlayer() {
         return personaje;
     }
 }
