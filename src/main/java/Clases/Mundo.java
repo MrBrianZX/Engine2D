@@ -16,6 +16,10 @@ public class Mundo {
 
     public ArrayList<Objeto> ObjetosMundo = new ArrayList<>();
 
+    private final  SoundPlayer ReproductorSonidos = SoundPlayer.getInstacia();
+    private Sonido sonidoBg;
+    private Sonido sonidoPerdio;
+
     public void init(SistemaControl evento, int widht, int height){
         xlim = widht;
         ylim = height;
@@ -44,6 +48,9 @@ public class Mundo {
         ObjetosMundo.add(pilarUpper);
         ObjetosMundo.add(pilarBelow);
 
+        sonidoPerdio = new Sonido("sounds/effects/lose.mid");
+        sonidoBg = new Sonido("/sounds/effects/main.mid");
+        ReproductorSonidos.playloop(sonidoBg, 20);
     }
 
     public void Reglas() {
@@ -97,6 +104,10 @@ public class Mundo {
     public void update(){
         Reglas();
         personaje.Update();
+        if(personaje.getHPactual() <= 0){
+            ReproductorSonidos.stop(sonidoBg);
+            ReproductorSonidos.play(sonidoPerdio);
+        }
     }
 
     public void SetFin(boolean valor){
