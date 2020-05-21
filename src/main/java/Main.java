@@ -31,7 +31,7 @@ public class Main extends Application {
         System.out.println("MAIN");
         //Labels
         JLabel vida = new JLabel("Vida:");
-        JLabel vidavalor = new JLabel("Loading");
+        JLabel vidavalor = new JLabel("Ha perdido. Enter: Continuar. ESC:Salir.    ");
         SwingNode nodoVidaTexto = new SwingNode();
         nodoVidaTexto.setContent(vida);
         SwingNode nodoVidaValor = new SwingNode();
@@ -40,12 +40,12 @@ public class Main extends Application {
         Rectangle hpbarra = new Rectangle();
 
         //Canvas
+
         Canvas mi_canvas = new Canvas(Micontrol,hpbarra,vidavalor);
         mi_canvas.setSize(WIDTH,HEIGHT);
         mi_canvas.init();
         SwingNode nodoCanvas = new SwingNode();
         nodoCanvas.setContent(mi_canvas);
-
         Separator linea = new Separator(Orientation.VERTICAL);
         Separator linea2 = new Separator(Orientation.VERTICAL);
 

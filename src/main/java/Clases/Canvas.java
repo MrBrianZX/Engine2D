@@ -27,7 +27,6 @@ public class Canvas extends JPanel {
     ;
     private SistemaMovimiento movimiento = SistemaMovimiento.getInstancia();
     private SistemaControl controles;
-    private JLabel textoDerrota;
 
 
     public Canvas(SistemaControl evento, Rectangle vida, JLabel vidaTexto) {
@@ -44,7 +43,7 @@ public class Canvas extends JPanel {
     public void init() {
         movimiento.SetCanvasLimit(this.getWidth(), this.getHeight());
         primernivel.init(controles, this.getWidth(), this.getHeight());
-        this.primernivel.getPlayer().setHPactual(10);
+        this.primernivel.getPlayer().setHPactual(100 );
     }
 
     public void UpdateFrames() {
@@ -81,6 +80,9 @@ public class Canvas extends JPanel {
                 textoVida.setText(String.valueOf(vida));
             }
         } else if (vida < 1) {
+            this.setBackground(Color.black);
+            super.paintComponent(g);
+            textoVida.setText("Ha perdido. Enter: Continuar. ESC:Salir.");
             if (primernivel.personaje.getBotones().getContinue()) {
                 this.init();
                 primernivel.personaje.getBotones().resetContinue();
