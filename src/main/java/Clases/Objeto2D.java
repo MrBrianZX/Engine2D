@@ -76,7 +76,7 @@ public class Objeto2D extends Objeto {
         this.getSuperficie().setImagen(despues);
     }
 
-    public void rotarImagen(double angulo){
+    public void rotarImagen (double angulo){
         double rads = Math.toRadians(angulo);
         double sin = Math.abs(Math.sin(rads)), cos = Math.abs(Math.cos(rads));
 
@@ -99,4 +99,3 @@ public class Objeto2D extends Objeto {
         this.getSuperficie().setImagen(despues);
     }
 }
-//Todo Bien con esta wea

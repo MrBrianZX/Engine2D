@@ -27,6 +27,7 @@ public class Main extends Application {
         //JavaFX
         MIVentana = ventana;
         MIVentana.setTitle("MiniJuego con Engine JavaFX");
+        MIVentana.setAlwaysOnTop(true);
         System.out.println("MAIN");
         //Labels
         JLabel vida = new JLabel("Vida:");

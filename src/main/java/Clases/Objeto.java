@@ -55,4 +55,3 @@ public class Objeto {
         //sobreescribir en la clase que se use. cascaron para el renderer
     }
 }
-//Todo Bien con esta wea

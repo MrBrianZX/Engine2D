@@ -50,4 +50,3 @@ public class Objeto2DDinamico extends Objeto2D{
         }
     }
 }
-//TODO Compa Alterado

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Mundo {
-    private Jugador personaje;
+    public Jugador personaje;
     private Pilares pilarUpper;
     private Pilares pilarBelow;
 
@@ -39,11 +39,11 @@ public class Mundo {
         pilarBelow.setEscalar(0.5,1);
         pilarBelow.setVelocidad(new Vector2D(-3,0));
         pilarBelow.setColisionVisible(true);
-
         ObjetosMundo.add(bg);
         ObjetosMundo.add(personaje);
         ObjetosMundo.add(pilarUpper);
         ObjetosMundo.add(pilarBelow);
+
     }
 
     public void Reglas() {
@@ -62,13 +62,13 @@ public class Mundo {
         if(personaje.getPosicion().y >= ylim || pilarUpper.getColision().EnColision(personaje.getColision()) || pilarBelow.getColision().EnColision(personaje.getColision())){
             SetFin(true);
             personaje.Danio(pilarUpper.getDanio());
-            System.out.println(pilarUpper.getDanio()+"-Vida: "+personaje.getHPactual());
+            //System.out.println(pilarUpper.getDanio()+"-Vida: "+personaje.getHPactual());
         }
 
         if(pilarBelow.getColision().EnColision(personaje.getColision())){
             SetFin(true);
             personaje.Danio(pilarBelow.getDanio());
-            System.out.println(pilarBelow.getDanio()+"-Vida: "+personaje.getHPactual());
+            //  System.out.println(pilarBelow.getDanio()+"-Vida: "+personaje.getHPactual());
         }
 
         int escalaminima = 1;
@@ -101,6 +101,7 @@ public class Mundo {
 
     public void SetFin(boolean valor){
         fin = valor;
+
     }
 
     public boolean IsOver(){
@@ -110,5 +111,8 @@ public class Mundo {
     public Jugador getPlayer() {
         return personaje;
     }
+
+    public void setHPMax(){
+        personaje.setHPactual(100);
+    }
 }
-// Good Job Darling

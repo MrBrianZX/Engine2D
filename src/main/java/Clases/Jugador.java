@@ -62,4 +62,8 @@ public class Jugador extends Objeto2DDinamico {
             InicioTimer = false;
         }
     }
+
+    public SistemaControl getBotones() {
+        return botones;
+    }
 }

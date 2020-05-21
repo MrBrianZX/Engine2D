@@ -50,4 +50,3 @@ public class CuadroColision {
         return false;
     }
 }
-//Revisado Camarrada
